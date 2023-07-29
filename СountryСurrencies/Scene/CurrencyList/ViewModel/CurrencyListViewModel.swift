@@ -10,7 +10,8 @@ import SwiftUI
 class CurrencyListViewModel: ObservableObject {
     @Published var currencies: [CurrencyModel] = []
     @Published var exchangeRates: [String: Double] = [:]
-
+    @Published var apiError: String?
+    
     let apiService = APIService()
 
     init() {
@@ -27,6 +28,11 @@ class CurrencyListViewModel: ObservableObject {
             if let conversionRates = response?.conversionRates {
                 DispatchQueue.main.async {
                     self.exchangeRates = conversionRates
+                    self.apiError = nil
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.apiError = "Failed to get the list of currencies"
                 }
             }
         }
