@@ -13,6 +13,10 @@
 		F2B011AD2A755B67006DF83F /* SelectedCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011AC2A755B67006DF83F /* SelectedCurrencyView.swift */; };
 		F2B011AF2A755B7A006DF83F /* SelectedCurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011AE2A755B7A006DF83F /* SelectedCurrencyViewModel.swift */; };
 		F2B011B12A755F4B006DF83F /* ImageAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011B02A755F4B006DF83F /* ImageAsset.swift */; };
+		F2B011B52A757252006DF83F /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = F2B011B42A757252006DF83F /* Realm */; };
+		F2B011B72A757252006DF83F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F2B011B62A757252006DF83F /* RealmSwift */; };
+		F2B011B92A757295006DF83F /* SelectedCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011B82A757295006DF83F /* SelectedCurrency.swift */; };
+		F2B011BD2A758756006DF83F /* SelectedCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011BC2A758756006DF83F /* SelectedCountryView.swift */; };
 		F2ED6A852A72CE4500A0945A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ED6A842A72CE4500A0945A /* AppDelegate.swift */; };
 		F2ED6A872A72CE4500A0945A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ED6A862A72CE4500A0945A /* SceneDelegate.swift */; };
 		F2ED6A8E2A72CE4700A0945A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2ED6A8D2A72CE4700A0945A /* Assets.xcassets */; };
@@ -41,6 +45,8 @@
 		F2B011AC2A755B67006DF83F /* SelectedCurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCurrencyView.swift; sourceTree = "<group>"; };
 		F2B011AE2A755B7A006DF83F /* SelectedCurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCurrencyViewModel.swift; sourceTree = "<group>"; };
 		F2B011B02A755F4B006DF83F /* ImageAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAsset.swift; sourceTree = "<group>"; };
+		F2B011B82A757295006DF83F /* SelectedCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCurrency.swift; sourceTree = "<group>"; };
+		F2B011BC2A758756006DF83F /* SelectedCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCountryView.swift; sourceTree = "<group>"; };
 		F2ED6A812A72CE4500A0945A /* СountryСurrencies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "СountryСurrencies.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2ED6A842A72CE4500A0945A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2ED6A862A72CE4500A0945A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2B011B72A757252006DF83F /* RealmSwift in Frameworks */,
+				F2B011B52A757252006DF83F /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				F2ED6AAF2A72DED100A0945A /* SettingsPage.swift */,
+				F2B011BC2A758756006DF83F /* SelectedCountryView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -254,7 +263,6 @@
 		F2ED6AB92A72ECEA00A0945A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F2ED6AC32A72F05800A0945A /* CurrencyModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -272,6 +280,8 @@
 			children = (
 				F2ED6ABB2A72ED1500A0945A /* CurrencyData.swift */,
 				F2ED6ABD2A72ED2C00A0945A /* ExchangeRateResponse.swift */,
+				F2B011B82A757295006DF83F /* SelectedCurrency.swift */,
+				F2ED6AC32A72F05800A0945A /* CurrencyModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -292,6 +302,10 @@
 			dependencies = (
 			);
 			name = "СountryСurrencies";
+			packageProductDependencies = (
+				F2B011B42A757252006DF83F /* Realm */,
+				F2B011B62A757252006DF83F /* RealmSwift */,
+			);
 			productName = "СountryСurrencies";
 			productReference = F2ED6A812A72CE4500A0945A /* СountryСurrencies.app */;
 			productType = "com.apple.product-type.application";
@@ -320,6 +334,9 @@
 				Base,
 			);
 			mainGroup = F2ED6A782A72CE4500A0945A;
+			packageReferences = (
+				F2B011B32A757252006DF83F /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = F2ED6A822A72CE4500A0945A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -359,6 +376,7 @@
 				F2ED6AC22A72EE2900A0945A /* APIService.swift in Sources */,
 				F2B011A92A7549A4006DF83F /* CusstomTextFieldView.swift in Sources */,
 				F2ED6AC82A72F51700A0945A /* CurrencyListViewModel.swift in Sources */,
+				F2B011B92A757295006DF83F /* SelectedCurrency.swift in Sources */,
 				F2B011AF2A755B7A006DF83F /* SelectedCurrencyViewModel.swift in Sources */,
 				F2B011A62A754970006DF83F /* TextFieldInputService.swift in Sources */,
 				F2ED6AC62A72F08C00A0945A /* CurrencyDataService.swift in Sources */,
@@ -366,6 +384,7 @@
 				F2ED6A872A72CE4500A0945A /* SceneDelegate.swift in Sources */,
 				F2B011A42A754065006DF83F /* AddCurrencyView.swift in Sources */,
 				F2B011AD2A755B67006DF83F /* SelectedCurrencyView.swift in Sources */,
+				F2B011BD2A758756006DF83F /* SelectedCountryView.swift in Sources */,
 				F2ED6ABC2A72ED1500A0945A /* CurrencyData.swift in Sources */,
 				F2ED6AB02A72DED100A0945A /* SettingsPage.swift in Sources */,
 				F2ED6ABE2A72ED2C00A0945A /* ExchangeRateResponse.swift in Sources */,
@@ -584,6 +603,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F2B011B32A757252006DF83F /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F2B011B42A757252006DF83F /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2B011B32A757252006DF83F /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		F2B011B62A757252006DF83F /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2B011B32A757252006DF83F /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F2ED6A792A72CE4500A0945A /* Project object */;
 }

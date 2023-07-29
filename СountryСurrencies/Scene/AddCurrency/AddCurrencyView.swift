@@ -41,8 +41,8 @@ struct AddCurrencyView: View {
                                 .frame(width: 30, height: 30)
                         }
                         VStack(alignment: .leading) {
-                            Text(viewModel.selectedCurrency?.currencyCode ?? "No Country Selected")
-                            Text(viewModel.selectedCurrency?.currencyName ?? "--")
+                            Text(viewModel.selectedCurrencyInSettings?.currencyCode ?? "No Country Selected")
+                            Text(viewModel.selectedCurrencyInSettings?.currencyName ?? "--")
                                 .font(.system(size: 13))
                                 .foregroundColor(.gray)
                         }
@@ -66,10 +66,10 @@ struct AddCurrencyView: View {
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical,9)
-                    .background((viewModel.selectedCurrency == nil || ownedCurrencyValue.isEmpty) ? Color.gray : Color.blue)
+                    .background((viewModel.selectedCurrencyInSettings == nil || ownedCurrencyValue.isEmpty) ? Color.gray : Color.blue)
                     .cornerRadius(10)
             }
-            .disabled(viewModel.selectedCurrency == nil || ownedCurrencyValue.isEmpty)
+            .disabled(viewModel.selectedCurrencyInSettings == nil || ownedCurrencyValue.isEmpty)
             .padding()
 
             

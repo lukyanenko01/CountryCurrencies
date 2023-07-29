@@ -1,5 +1,5 @@
 //
-//  SelectedCurrencyView.swift
+//  SelectedCountryView.swift
 //  СountryСurrencies
 //
 //  Created by Vladimir Lukyanenko on 29.07.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SelectedCurrencyView: View {
+struct SelectedCountryView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @StateObject var viewModel: SelectedCurrencyViewModel
@@ -37,12 +37,12 @@ struct SelectedCurrencyView: View {
                         }
                         Spacer()
                         
-                        Image(viewModel.selectedCurrency?.id == currency.id ? ImageAsset.radioChecked.rawValue : ImageAsset.radioUnchecked.rawValue)
+                        Image(viewModel.selectedCurrencyInSettings?.id == currency.id ? ImageAsset.radioChecked.rawValue : ImageAsset.radioUnchecked.rawValue)
                             .renderingMode(.template)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 25, height: 25)
-                            .foregroundColor(viewModel.selectedCurrency?.id == currency.id ? .blue : .gray)
+                            .foregroundColor(viewModel.selectedCurrencyInSettings?.id == currency.id ? .blue : .gray)
                             .clipShape(Circle())
                     }
                     .padding(.horizontal,12)
@@ -50,7 +50,7 @@ struct SelectedCurrencyView: View {
                     .cornerRadius(10)
                     .shadow(color: .gray.opacity(0.1), radius: 5, x: 0, y: 5)
                     .onTapGesture {
-                        viewModel.selectedCurrency = currency
+                        viewModel.selectedCurrencyInSettings = currency
                     }
 
                     Divider()
@@ -76,8 +76,5 @@ struct SelectedCurrencyView: View {
     }
 }
 
-struct SelectedCurrencyView_Previews: PreviewProvider {
-    static var previews: some View {
-        SelectedCurrencyView(viewModel: SelectedCurrencyViewModel())
-    }
-}
+
+

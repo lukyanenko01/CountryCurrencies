@@ -10,21 +10,20 @@ import SwiftUI
 struct SettingsPage: View {
     
     @ObservedObject var viewModel = SelectedCurrencyViewModel()
-
     
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: SelectedCurrencyView(viewModel: viewModel)) {
+                NavigationLink(destination: SelectedCountryView(viewModel: viewModel)) {
                     HStack {
                         VStack(alignment: .leading) {
                             Text("Selected Currency:")
-                            Text(viewModel.selectedCurrency?.countryName ?? "Ukraine")
+                            Text(viewModel.selectedCurrencyInSettings?.countryName ?? "Ukraine")
                                 .font(.system(size: 13))
                                 .foregroundColor(.gray)
                         }
                         Spacer()
-                        if let img = UIImage(named: viewModel.selectedCurrency?.currencyCode ?? "UAH") {
+                        if let img = UIImage(named: viewModel.selectedCurrencyInSettings?.currencyCode ?? "UAH") {
                             Image(uiImage: img)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -57,8 +56,8 @@ struct SettingsPage: View {
     }
 }
 
-struct SettingsPage_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsPage()
-    }
-}
+//struct SettingsPage_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SettingsPage()
+//    }
+//}
