@@ -9,7 +9,7 @@ import Foundation
 
 struct APIService {
     
-    private let apiKey = "3844894a731115138aa742ea"
+    private let apiKey = "be86ff34a1a0bd203460b278"
     
     public func fetchExchangeRate(baseCurrency: String, completion: @escaping ((ExchangeRateResponse?) -> Void)) {
         let urlString = "https://v6.exchangerate-api.com/v6/\(apiKey)/latest/\(baseCurrency)"

@@ -19,16 +19,14 @@ class CurrencyListViewModel: ObservableObject {
 
     func loadCurrencies() {
         self.currencies = CurrencyDataService.shared.loadCurrencies() ?? []
-        for currency in currencies {
-            fetchExchangeRate(for: currency.currencyCode)
-        }
+        fetchAllExchangeRates()
     }
 
-    func fetchExchangeRate(for currencyCode: String) {
-        apiService.fetchExchangeRate(baseCurrency: currencyCode) { (response) in
-            if let rate = response?.conversionRates["UAH"] {
+    func fetchAllExchangeRates() {
+        apiService.fetchExchangeRate(baseCurrency: "UAH") { (response) in
+            if let conversionRates = response?.conversionRates {
                 DispatchQueue.main.async {
-                    self.exchangeRates[currencyCode] = rate
+                    self.exchangeRates = conversionRates
                 }
             }
         }
