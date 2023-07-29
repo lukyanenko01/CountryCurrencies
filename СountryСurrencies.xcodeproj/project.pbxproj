@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F2B011A42A754065006DF83F /* AddCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011A32A754065006DF83F /* AddCurrencyView.swift */; };
+		F2B011A62A754970006DF83F /* TextFieldInputService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011A52A754970006DF83F /* TextFieldInputService.swift */; };
+		F2B011A92A7549A4006DF83F /* CusstomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011A82A7549A4006DF83F /* CusstomTextFieldView.swift */; };
 		F2ED6A852A72CE4500A0945A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ED6A842A72CE4500A0945A /* AppDelegate.swift */; };
 		F2ED6A872A72CE4500A0945A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ED6A862A72CE4500A0945A /* SceneDelegate.swift */; };
 		F2ED6A8E2A72CE4700A0945A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2ED6A8D2A72CE4700A0945A /* Assets.xcassets */; };
@@ -29,6 +32,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F2B011A32A754065006DF83F /* AddCurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCurrencyView.swift; sourceTree = "<group>"; };
+		F2B011A52A754970006DF83F /* TextFieldInputService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputService.swift; sourceTree = "<group>"; };
+		F2B011A82A7549A4006DF83F /* CusstomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CusstomTextFieldView.swift; sourceTree = "<group>"; };
 		F2ED6A812A72CE4500A0945A /* СountryСurrencies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "СountryСurrencies.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2ED6A842A72CE4500A0945A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2ED6A862A72CE4500A0945A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +69,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F2B011A22A754036006DF83F /* AddCurrency */ = {
+			isa = PBXGroup;
+			children = (
+				F2B011A32A754065006DF83F /* AddCurrencyView.swift */,
+			);
+			path = AddCurrency;
+			sourceTree = "<group>";
+		};
+		F2B011A72A754994006DF83F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F2B011A82A7549A4006DF83F /* CusstomTextFieldView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		F2ED6A782A72CE4500A0945A = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +120,8 @@
 				F2ED6AB32A72E02300A0945A /* Wallet */,
 				F2ED6AB22A72E01400A0945A /* Bids */,
 				F2ED6AB12A72E00800A0945A /* Settings */,
+				F2B011A22A754036006DF83F /* AddCurrency */,
+				F2B011A72A754994006DF83F /* Components */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -197,6 +221,7 @@
 			children = (
 				F2ED6AC12A72EE2900A0945A /* APIService.swift */,
 				F2ED6AC52A72F08C00A0945A /* CurrencyDataService.swift */,
+				F2B011A52A754970006DF83F /* TextFieldInputService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -314,10 +339,13 @@
 				F2ED6A9F2A72D68C00A0945A /* ContentView.swift in Sources */,
 				F2ED6AAC2A72DEBA00A0945A /* CurrencyListPage.swift in Sources */,
 				F2ED6AC22A72EE2900A0945A /* APIService.swift in Sources */,
+				F2B011A92A7549A4006DF83F /* CusstomTextFieldView.swift in Sources */,
 				F2ED6AC82A72F51700A0945A /* CurrencyListViewModel.swift in Sources */,
+				F2B011A62A754970006DF83F /* TextFieldInputService.swift in Sources */,
 				F2ED6AC62A72F08C00A0945A /* CurrencyDataService.swift in Sources */,
 				F2ED6AA62A72DDA700A0945A /* ColorAsset.swift in Sources */,
 				F2ED6A872A72CE4500A0945A /* SceneDelegate.swift in Sources */,
+				F2B011A42A754065006DF83F /* AddCurrencyView.swift in Sources */,
 				F2ED6ABC2A72ED1500A0945A /* CurrencyData.swift in Sources */,
 				F2ED6AB02A72DED100A0945A /* SettingsPage.swift in Sources */,
 				F2ED6ABE2A72ED2C00A0945A /* ExchangeRateResponse.swift in Sources */,
@@ -466,7 +494,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -497,7 +525,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
