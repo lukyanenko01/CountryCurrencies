@@ -39,15 +39,16 @@ struct CurrencyListPage: View {
                                         Image(uiImage: img)
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
-                                            .frame(width: 50, height: 50)
+                                            .frame(width: 30, height: 30)
                                             .clipShape(Circle())
                                     } else {
                                         Circle()
                                             .fill(Color.gray)
-                                            .frame(width: 50, height: 50)
+                                            .frame(width: 30, height: 30)
+                                        
                                     }
                                     
-                                    VStack(alignment: .leading) {
+                                    HStack {
                                         Text(currency.currencyCode)
                                         Text(currency.currencyName)
                                             .font(.system(size: 13))

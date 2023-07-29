@@ -9,11 +9,13 @@ import SwiftUI
 
 struct AddCurrencyView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
+    @ObservedObject var viewModel: SelectedCurrencyViewModel
+
     @State private var ownedCurrencyValue = ""
     private let titleTextField = "Owned Value (UAH)"
     private let atribbuteField = "Enter Owned Currency Value"
     private let navigationTitle = "Add Owned Currency"
+
 
     
     var body: some View {
@@ -25,15 +27,22 @@ struct AddCurrencyView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top,30)
                 
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: SelectedCurrencyView(viewModel: viewModel)) {
                     HStack() {
-                        Circle()
-                            .fill(Color.gray)
-                            .frame(width: 50, height: 50)
-                        
+                        if let img = UIImage(named: viewModel.selectedCurrency?.currencyCode ?? "") {
+                            Image(uiImage: img)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 30, height: 30)
+                                .clipShape(Circle())
+                        } else {
+                            Circle()
+                                .fill(Color.gray)
+                                .frame(width: 30, height: 30)
+                        }
                         VStack(alignment: .leading) {
-                            Text("currencyCode")
-                            Text("currencyName")
+                            Text(viewModel.selectedCurrency?.currencyCode ?? "No Country Selected")
+                            Text(viewModel.selectedCurrency?.currencyName ?? "--")
                                 .font(.system(size: 13))
                                 .foregroundColor(.gray)
                         }
@@ -46,11 +55,23 @@ struct AddCurrencyView: View {
                             .strokeBorder(Color.black.opacity(0.4), lineWidth: 1)
                     )
                 }
-                
-                
             }
             
             Spacer()
+            
+            Button {
+                print("TAP")
+            } label: {
+                Text("Add")
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical,9)
+                    .background((viewModel.selectedCurrency != nil) ? Color.blue : Color.gray)
+                    .cornerRadius(10)
+            }
+            .disabled(viewModel.selectedCurrency == nil)
+            .padding()
+
             
         }
         .padding(.top, 30)
@@ -77,7 +98,7 @@ struct AddCurrencyView: View {
 
 struct AddCurrencyView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCurrencyView()
+        AddCurrencyView(viewModel: SelectedCurrencyViewModel())
     }
 }
 

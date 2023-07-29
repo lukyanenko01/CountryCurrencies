@@ -12,6 +12,7 @@ struct WalletPage: View {
     @State private var isSearching = false
     @State private var searchText = ""
     @State private var isAddOwnedCurrency = false
+    @ObservedObject var viewModel = SelectedCurrencyViewModel()
     
     var body: some View {
         NavigationView {
@@ -48,7 +49,7 @@ struct WalletPage: View {
                         .frame(width: 20, height: 20)
                         .foregroundColor(.gray.opacity(0.5))
                 }
-                NavigationLink(destination: AddCurrencyView(), isActive: $isAddOwnedCurrency) {
+                NavigationLink(destination: AddCurrencyView(viewModel: viewModel), isActive: $isAddOwnedCurrency) {
                     Button {
                         isAddOwnedCurrency.toggle()
                     } label: {
