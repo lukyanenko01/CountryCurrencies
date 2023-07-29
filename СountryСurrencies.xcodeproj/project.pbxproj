@@ -80,7 +80,6 @@
 			children = (
 				F2B011A32A754065006DF83F /* AddCurrencyView.swift */,
 				F2B011AC2A755B67006DF83F /* SelectedCurrencyView.swift */,
-				F2B011AE2A755B7A006DF83F /* SelectedCurrencyViewModel.swift */,
 			);
 			path = AddCurrency;
 			sourceTree = "<group>";
@@ -91,6 +90,14 @@
 				F2B011A82A7549A4006DF83F /* CusstomTextFieldView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		F2B011B22A756C8D006DF83F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F2B011AE2A755B7A006DF83F /* SelectedCurrencyViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		F2ED6A782A72CE4500A0945A = {
@@ -161,6 +168,7 @@
 				F2ED6AA42A72DD9300A0945A /* Utils */,
 				F2ED6AB72A72ECB400A0945A /* Services */,
 				F2ED6AC92A72F7EE00A0945A /* Models */,
+				F2B011B22A756C8D006DF83F /* ViewModels */,
 			);
 			path = Core;
 			sourceTree = "<group>";

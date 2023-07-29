@@ -66,10 +66,10 @@ struct AddCurrencyView: View {
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical,9)
-                    .background((viewModel.selectedCurrency != nil) ? Color.blue : Color.gray)
+                    .background((viewModel.selectedCurrency == nil || ownedCurrencyValue.isEmpty) ? Color.gray : Color.blue)
                     .cornerRadius(10)
             }
-            .disabled(viewModel.selectedCurrency == nil)
+            .disabled(viewModel.selectedCurrency == nil || ownedCurrencyValue.isEmpty)
             .padding()
 
             
@@ -79,8 +79,10 @@ struct AddCurrencyView: View {
         .navigationTitle(navigationTitle)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton)
+        .onTapGesture {
+            hideKeyboard()
+        }
     }
-    
     
     @ViewBuilder
     var backButton : some View {
@@ -94,6 +96,11 @@ struct AddCurrencyView: View {
             }
         }
     }
+    
+    private func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
 }
 
 struct AddCurrencyView_Previews: PreviewProvider {

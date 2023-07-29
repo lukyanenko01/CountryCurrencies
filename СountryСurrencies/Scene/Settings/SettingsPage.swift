@@ -8,18 +8,52 @@
 import SwiftUI
 
 struct SettingsPage: View {
+    
+    @ObservedObject var viewModel = SelectedCurrencyViewModel()
+
+    
     var body: some View {
         NavigationView {
             VStack {
-                Text("Settings")
+                NavigationLink(destination: SelectedCurrencyView(viewModel: viewModel)) {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Selected Currency:")
+                            Text(viewModel.selectedCurrency?.countryName ?? "Ukraine")
+                                .font(.system(size: 13))
+                                .foregroundColor(.gray)
+                        }
+                        Spacer()
+                        if let img = UIImage(named: viewModel.selectedCurrency?.currencyCode ?? "UAH") {
+                            Image(uiImage: img)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 44, height: 44)
+                                .clipShape(Circle())
+                        } else {
+                            Circle()
+                                .fill(Color.gray)
+                                .frame(width: 44, height: 44)
+                        }
+                    }
+                    
+                    .padding(.top,30)
+                    .padding(.horizontal,20)
+                    .frame(maxWidth: .infinity)
+                    .cornerRadius(10)
+                    .shadow(color: .gray.opacity(0.1), radius: 5, x: 0, y: 5)
+                }
+                Divider()
+                    .padding()
+                Spacer()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(ColorAsset.homeDG.color).ignoresSafeArea())
-            .navigationTitle("Settings")
-            .navigationBarTitleDisplayMode(.inline)
+           
+            
         }
-        
-        
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color(ColorAsset.homeDG.color).ignoresSafeArea())
+        .navigationTitle("Settings")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
