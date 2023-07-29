@@ -46,43 +46,20 @@ class CurrencyListViewModel: ObservableObject {
     }
     
     private func loadSelectedCurrency() -> CurrencyModel? {
-        do {
-            let realm = try Realm()
-            let selectedCurrencyObject = realm.objects(SelectedCurrency.self).first
-            return mapToCurrencyModel(realmCurrency: selectedCurrencyObject)
-        } catch {
-            print("Failed to initialize Realm: \(error)")
-            return nil
-        }
-    }
-    
-    private func mapToCurrencyModel(realmCurrency: SelectedCurrency?) -> CurrencyModel? {
-        guard let realmCurrency = realmCurrency else { return nil }
-        
-        let currency = CurrencyModel(id: UUID(uuidString: realmCurrency.id) ?? UUID(),
-                                     countryName: realmCurrency.currencyName,
-                                     currencyCode: realmCurrency.currencyCode,
-                                     currencyName: realmCurrency.currencyName)
-        
-        return currency
+        return RealmManager.shared.loadSelectedCurrency()
     }
 
     private func observeRealmChanges() {
-        do {
-            let realm = try Realm()
-            self.notificationToken = realm.objects(SelectedCurrency.self).observe { [weak self] (changes: RealmCollectionChange) in
-                switch changes {
-                case .initial, .update:
-                    DispatchQueue.main.async {
-                        self?.selectedCurrency = self?.loadSelectedCurrency()
-                        self?.fetchAllExchangeRates()
-                    }
-                case .error(let error):
-                    print("Failed to fetch Realm objects: \(error)")
+        notificationToken = RealmManager.shared.observeRealmChanges { [weak self] (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial, .update:
+                DispatchQueue.main.async {
+                    self?.selectedCurrency = self?.loadSelectedCurrency()
+                    self?.fetchAllExchangeRates()
                 }
+            case .error(let error):
+                print("Failed to fetch Realm objects: \(error)")
             }
-        } catch {
-            print("Failed to setup Realm observer: \(error)")
         }
     }
     

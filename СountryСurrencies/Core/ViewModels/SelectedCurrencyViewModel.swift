@@ -9,7 +9,6 @@ import SwiftUI
 import RealmSwift
 
 class SelectedCurrencyViewModel: ObservableObject {
-    private var realm: Realm?
     
     @Published var currencies: [CurrencyModel] = []
     @Published var selectedCurrency: CurrencyModel?
@@ -28,57 +27,22 @@ class SelectedCurrencyViewModel: ObservableObject {
     let apiService = APIService()
     
     init() {
-        do {
-            self.realm = try Realm()
-            self.loadCurrencies()
-            
-            if let savedCurrency = loadSelectedCurrency() {
-                self.selectedCurrencyInSettings = savedCurrency
-            }
-        } catch {
-            print("Failed to initialize Realm: \(error)")
-        }
-    }
-    
+           self.loadCurrencies()
+           
+           if let savedCurrency = RealmManager.shared.loadSelectedCurrency() {
+               self.selectedCurrencyInSettings = savedCurrency
+           }
+       }
     func loadCurrencies() {
         self.currencies = CurrencyDataService.shared.loadCurrencies() ?? []
     }
     
+    
     private func saveSelectedCurrency(_ currency: CurrencyModel) throws {
-        guard let realm = self.realm else {
-            print("Realm is not initialized.")
-            return
-        }
-        
-        let realmCurrency = SelectedCurrency()
-        realmCurrency.id = currency.id.uuidString
-        realmCurrency.currencyCode = currency.currencyCode
-        realmCurrency.currencyName = currency.currencyName
-        
-        do {
-            try realm.write {
-                realm.deleteAll()
-                realm.add(realmCurrency)
-            }
-        } catch {
-            throw error
-        }
+        try RealmManager.shared.saveSelectedCurrency(currency)
     }
     
     private func loadSelectedCurrency() -> CurrencyModel? {
-        guard let realm = self.realm else {
-            print("Realm is not initialized.")
-            return nil
-        }
-        
-        let selectedCurrencyObject = realm.objects(SelectedCurrency.self).first
-        guard let realmCurrency = selectedCurrencyObject else { return nil }
-        
-        let currency = CurrencyModel(id: UUID(uuidString: realmCurrency.id) ?? UUID(),
-                                     countryName: realmCurrency.currencyName,
-                                     currencyCode: realmCurrency.currencyCode,
-                                     currencyName: realmCurrency.currencyName)
-        
-        return currency
+        return RealmManager.shared.loadSelectedCurrency()
     }
 }

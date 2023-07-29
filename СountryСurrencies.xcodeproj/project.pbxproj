@@ -17,6 +17,8 @@
 		F2B011B72A757252006DF83F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F2B011B62A757252006DF83F /* RealmSwift */; };
 		F2B011B92A757295006DF83F /* SelectedCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011B82A757295006DF83F /* SelectedCurrency.swift */; };
 		F2B011BD2A758756006DF83F /* SelectedCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011BC2A758756006DF83F /* SelectedCountryView.swift */; };
+		F2B011BF2A759C8C006DF83F /* CurrencyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011BE2A759C8C006DF83F /* CurrencyRow.swift */; };
+		F2B011C12A759DB8006DF83F /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011C02A759DB8006DF83F /* RealmManager.swift */; };
 		F2ED6A852A72CE4500A0945A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ED6A842A72CE4500A0945A /* AppDelegate.swift */; };
 		F2ED6A872A72CE4500A0945A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ED6A862A72CE4500A0945A /* SceneDelegate.swift */; };
 		F2ED6A8E2A72CE4700A0945A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2ED6A8D2A72CE4700A0945A /* Assets.xcassets */; };
@@ -47,6 +49,8 @@
 		F2B011B02A755F4B006DF83F /* ImageAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAsset.swift; sourceTree = "<group>"; };
 		F2B011B82A757295006DF83F /* SelectedCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCurrency.swift; sourceTree = "<group>"; };
 		F2B011BC2A758756006DF83F /* SelectedCountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCountryView.swift; sourceTree = "<group>"; };
+		F2B011BE2A759C8C006DF83F /* CurrencyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRow.swift; sourceTree = "<group>"; };
+		F2B011C02A759DB8006DF83F /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		F2ED6A812A72CE4500A0945A /* СountryСurrencies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "СountryСurrencies.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2ED6A842A72CE4500A0945A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2ED6A862A72CE4500A0945A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				F2B011A82A7549A4006DF83F /* CusstomTextFieldView.swift */,
+				F2B011BE2A759C8C006DF83F /* CurrencyRow.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -235,7 +240,6 @@
 		F2ED6AB42A72E02F00A0945A /* CurrencyList */ = {
 			isa = PBXGroup;
 			children = (
-				F2ED6AB92A72ECEA00A0945A /* Model */,
 				F2ED6AB82A72ECCE00A0945A /* View */,
 				F2ED6ABA2A72ECEF00A0945A /* ViewModel */,
 			);
@@ -245,6 +249,7 @@
 		F2ED6AB72A72ECB400A0945A /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F2B011C02A759DB8006DF83F /* RealmManager.swift */,
 				F2ED6AC12A72EE2900A0945A /* APIService.swift */,
 				F2ED6AC52A72F08C00A0945A /* CurrencyDataService.swift */,
 				F2B011A52A754970006DF83F /* TextFieldInputService.swift */,
@@ -258,13 +263,6 @@
 				F2ED6AAB2A72DEBA00A0945A /* CurrencyListPage.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		F2ED6AB92A72ECEA00A0945A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		F2ED6ABA2A72ECEF00A0945A /* ViewModel */ = {
@@ -377,6 +375,7 @@
 				F2B011A92A7549A4006DF83F /* CusstomTextFieldView.swift in Sources */,
 				F2ED6AC82A72F51700A0945A /* CurrencyListViewModel.swift in Sources */,
 				F2B011B92A757295006DF83F /* SelectedCurrency.swift in Sources */,
+				F2B011C12A759DB8006DF83F /* RealmManager.swift in Sources */,
 				F2B011AF2A755B7A006DF83F /* SelectedCurrencyViewModel.swift in Sources */,
 				F2B011A62A754970006DF83F /* TextFieldInputService.swift in Sources */,
 				F2ED6AC62A72F08C00A0945A /* CurrencyDataService.swift in Sources */,
@@ -385,6 +384,7 @@
 				F2B011A42A754065006DF83F /* AddCurrencyView.swift in Sources */,
 				F2B011AD2A755B67006DF83F /* SelectedCurrencyView.swift in Sources */,
 				F2B011BD2A758756006DF83F /* SelectedCountryView.swift in Sources */,
+				F2B011BF2A759C8C006DF83F /* CurrencyRow.swift in Sources */,
 				F2ED6ABC2A72ED1500A0945A /* CurrencyData.swift in Sources */,
 				F2ED6AB02A72DED100A0945A /* SettingsPage.swift in Sources */,
 				F2ED6ABE2A72ED2C00A0945A /* ExchangeRateResponse.swift in Sources */,
