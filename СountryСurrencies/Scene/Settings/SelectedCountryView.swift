@@ -53,6 +53,7 @@ struct SelectedCountryView: View {
                         viewModel.selectedCurrencyInSettings = currency
                     }
 
+
                     Divider()
                 }
             }
