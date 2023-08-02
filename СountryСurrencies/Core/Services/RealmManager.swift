@@ -72,6 +72,43 @@ class RealmManager {
         }
     }
     
+    
+    func saveUserOwnedCurrency(_ currency: UserOwnedCurrency) throws {
+        guard let realm = self.realm else {
+            print("Realm is not initialized.")
+            throw RealmError.initializationError
+        }
+        
+        do {
+            try realm.write {
+                realm.add(currency, update: .modified)
+            }
+        } catch {
+            throw RealmError.writeError
+        }
+    }
+
+    func loadUserOwnedCurrency() -> [UserOwnedCurrency] {
+        guard let realm = self.realm else {
+            print("Realm is not initialized.")
+            return []
+        }
+        
+        let userOwnedCurrencies = Array(realm.objects(UserOwnedCurrency.self))
+        return userOwnedCurrencies
+    }
+    
+    func observeUserOwnedCurrencies(completion: @escaping (RealmCollectionChange<Results<UserOwnedCurrency>>) -> Void) -> NotificationToken? {
+        guard let realm = self.realm else {
+            print("Realm is not initialized.")
+            return nil
+        }
+        let notificationToken = realm.objects(UserOwnedCurrency.self).observe { (changes: RealmCollectionChange) in
+            completion(changes)
+        }
+        return notificationToken
+    }
+
     enum RealmError: Error {
         case initializationError
         case writeError

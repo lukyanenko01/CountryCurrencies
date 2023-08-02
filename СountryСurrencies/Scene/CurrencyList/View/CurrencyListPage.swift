@@ -66,3 +66,8 @@ struct CurrencyListPage: View {
     }
 }
 
+struct CurrencyListPage_Previews: PreviewProvider {
+    static var previews: some View {
+        CurrencyListPage()
+    }
+}

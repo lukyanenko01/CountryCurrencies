@@ -12,5 +12,6 @@ class SelectedCurrency: Object {
     @objc dynamic var id = ""
     @objc dynamic var currencyCode = ""
     @objc dynamic var currencyName = ""
+    
 }
 

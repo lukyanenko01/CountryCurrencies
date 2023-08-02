@@ -12,7 +12,7 @@ struct WalletPage: View {
     @State private var isSearching = false
     @State private var searchText = ""
     @State private var isAddOwnedCurrency = false
-    @ObservedObject var viewModel = SelectedCurrencyViewModel()
+    @ObservedObject var viewModel: AddCurrencyViewModel
     
     var body: some View {
         NavigationView {
@@ -34,6 +34,49 @@ struct WalletPage: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal)
                 }
+                
+                if viewModel.userOwnedCurrencies.isEmpty {
+                    Text("No saved currencies yet")
+                        .foregroundColor(.gray)
+                        .font(.system(size: 20))
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.horizontal)
+
+                } else {
+                    ForEach(viewModel.userOwnedCurrencies, id: \.id) { currency in
+                        HStack {
+                            if let img = UIImage(named: currency.currencyCode) {
+                                Image(uiImage: img)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 30, height: 30)
+                                    .clipShape(Circle())
+                            } else {
+                                Circle()
+                                    .fill(Color.gray)
+                                    .frame(width: 30, height: 30)
+                            }
+
+                            HStack {
+                                Text(currency.currencyCode)
+                                Text("\(currency.ownedValue)")
+                                    .font(.system(size: 13))
+                                    .foregroundColor(.gray)
+                            }
+
+                            Spacer()
+
+
+                                Text("\(currency.ownedValue)")
+                        }
+                        .padding(.horizontal,12)
+                        .frame(maxWidth: .infinity)
+                        .cornerRadius(10)
+                        .shadow(color: .gray.opacity(0.1), radius: 5, x: 0, y: 5)
+
+                    }
+                }
+                
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(ColorAsset.homeDG.color).ignoresSafeArea())
@@ -70,6 +113,6 @@ struct WalletPage: View {
 
 struct WalletPage_Previews: PreviewProvider {
     static var previews: some View {
-        WalletPage()
+        WalletPage(viewModel: AddCurrencyViewModel())
     }
 }

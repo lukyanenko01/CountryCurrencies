@@ -14,7 +14,7 @@ class CurrencyListViewModel: ObservableObject {
     @Published var apiError: String?
     @Published var selectedCurrency: CurrencyModel?
     
-    let apiService = APIService()
+    let apiService = APIManager()
     
     private var notificationToken: NotificationToken?
     

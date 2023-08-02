@@ -25,13 +25,13 @@ struct MainPage: View {
                 CurrencyListPage()
                     .tag(Tab.currencyListPage)
                 
-                WalletPage()
+                WalletPage(viewModel: AddCurrencyViewModel())
                     .tag(Tab.walletPage)
                 
                 BidsPage()
                     .tag(Tab.bidsPage)
                 
-                SettingsPage()
+                SettingsPage(viewModel: SettingsCurrencyViewModel())
                     .tag(Tab.settingsPage)
             }
             

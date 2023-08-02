@@ -1,13 +1,13 @@
 //
-//  APIService.swift
+//  APIManager.swift
 //  СountryСurrencies
 //
-//  Created by Vladimir Lukyanenko on 27.07.2023.
+//  Created by Vladimir Lukyanenko on 29.07.2023.
 //
 
 import Foundation
 
-struct APIService {
+struct APIManager {
     
     private let apiKey = "be86ff34a1a0bd203460b278"
     
@@ -35,3 +35,7 @@ struct APIService {
         }.resume()
     }
 }
+
+
+
+

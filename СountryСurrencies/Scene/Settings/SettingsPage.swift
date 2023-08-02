@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsPage: View {
     
-    @ObservedObject var viewModel = SelectedCurrencyViewModel()
+    @ObservedObject var viewModel: SettingsCurrencyViewModel
     
     var body: some View {
         NavigationView {
@@ -56,8 +56,8 @@ struct SettingsPage: View {
     }
 }
 
-//struct SettingsPage_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SettingsPage()
-//    }
-//}
+struct SettingsPage_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingsPage(viewModel: SettingsCurrencyViewModel())
+    }
+}

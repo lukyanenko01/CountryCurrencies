@@ -7,53 +7,16 @@
 
 import SwiftUI
 
-struct SelectedCountryView: View {
+struct SelectedCountryView<ViewModel: CurrencyViewModelProtocol>: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @StateObject var viewModel: SelectedCurrencyViewModel
+    @ObservedObject var viewModel: ViewModel
 
     var body: some View {
         ScrollView {
             VStack {
                 ForEach(viewModel.currencies, id: \.id) { currency in
-                    HStack {
-                        if let img = UIImage(named: currency.currencyCode) {
-                            Image(uiImage: img)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 30, height: 30)
-                                .clipShape(Circle())
-                        } else {
-                            Circle()
-                                .fill(Color.gray)
-                                .frame(width: 30, height: 30)
-                        }
-                        
-                        VStack(alignment: .leading) {
-                            Text(currency.currencyCode)
-                            Text(currency.currencyName)
-                                .font(.system(size: 13))
-                                .foregroundColor(.gray)
-                        }
-                        Spacer()
-                        
-                        Image(viewModel.selectedCurrencyInSettings?.id == currency.id ? ImageAsset.radioChecked.rawValue : ImageAsset.radioUnchecked.rawValue)
-                            .renderingMode(.template)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 25, height: 25)
-                            .foregroundColor(viewModel.selectedCurrencyInSettings?.id == currency.id ? .blue : .gray)
-                            .clipShape(Circle())
-                    }
-                    .padding(.horizontal,12)
-                    .frame(maxWidth: .infinity)
-                    .cornerRadius(10)
-                    .shadow(color: .gray.opacity(0.1), radius: 5, x: 0, y: 5)
-                    .onTapGesture {
-                        viewModel.selectedCurrencyInSettings = currency
-                    }
-
-
+                    currencyRowView(for: currency)
                     Divider()
                 }
             }
@@ -61,6 +24,52 @@ struct SelectedCountryView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: backButton)
         }
+    }
+
+    @ViewBuilder
+    func currencyRowView(for currency: CurrencyModel) -> some View {
+        HStack {
+            if let img = UIImage(named: currency.currencyCode) {
+                Image(uiImage: img)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 30, height: 30)
+                    .clipShape(Circle())
+            } else {
+                Circle()
+                    .fill(Color.gray)
+                    .frame(width: 30, height: 30)
+            }
+            
+            VStack(alignment: .leading) {
+                Text(currency.currencyCode)
+                Text(currency.currencyName)
+                    .font(.system(size: 13))
+                    .foregroundColor(.gray)
+            }
+            Spacer()
+            
+            Image((viewModel.isAddCurrencyViewSource ? viewModel.selectedCurrency?.id : viewModel.selectedCurrencyInSettings?.id) == currency.id ? ImageAsset.radioChecked.rawValue : ImageAsset.radioUnchecked.rawValue)
+                .renderingMode(.template)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 25, height: 25)
+                .foregroundColor((viewModel.isAddCurrencyViewSource ? viewModel.selectedCurrency?.id : viewModel.selectedCurrencyInSettings?.id) == currency.id ? .blue : .gray)
+                .clipShape(Circle())
+
+        }
+        .padding(.horizontal,12)
+        .frame(maxWidth: .infinity)
+        .cornerRadius(10)
+        .shadow(color: .gray.opacity(0.1), radius: 5, x: 0, y: 5)
+        .onTapGesture {
+            if viewModel.isAddCurrencyViewSource {
+                viewModel.selectedCurrency = currency
+            } else {
+                viewModel.selectedCurrencyInSettings = currency
+            }
+        }
+
     }
 
     @ViewBuilder
@@ -77,5 +86,12 @@ struct SelectedCountryView: View {
     }
 }
 
+
+
+//struct SelectedCountryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SelectedCountryView(viewModel: SelectedCurrencyViewModel())
+//    }
+//}
 
 

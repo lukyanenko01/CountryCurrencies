@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddCurrencyView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @ObservedObject var viewModel: SelectedCurrencyViewModel
+    @ObservedObject var viewModel: AddCurrencyViewModel
 
     @State private var ownedCurrencyValue = ""
     private let titleTextField = "Owned Value (UAH)"
@@ -27,7 +27,7 @@ struct AddCurrencyView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top,30)
                 
-                NavigationLink(destination: SelectedCurrencyView(viewModel: viewModel)) {
+                NavigationLink(destination: SelectedCountryView(viewModel: viewModel)) {
                     HStack() {
                         if let img = UIImage(named: viewModel.selectedCurrency?.currencyCode ?? "") {
                             Image(uiImage: img)
@@ -41,8 +41,8 @@ struct AddCurrencyView: View {
                                 .frame(width: 30, height: 30)
                         }
                         VStack(alignment: .leading) {
-                            Text(viewModel.selectedCurrencyInSettings?.currencyCode ?? "No Country Selected")
-                            Text(viewModel.selectedCurrencyInSettings?.currencyName ?? "--")
+                            Text(viewModel.selectedCurrency?.currencyCode ?? "No Country Selected")
+                            Text(viewModel.selectedCurrency?.currencyName ?? "--")
                                 .font(.system(size: 13))
                                 .foregroundColor(.gray)
                         }
@@ -60,16 +60,19 @@ struct AddCurrencyView: View {
             Spacer()
             
             Button {
-                print("TAP")
+                let ownedValue = Double(ownedCurrencyValue) ?? 0.0
+                   if let currencyCode = viewModel.selectedCurrency?.currencyCode {
+                       viewModel.addUserOwnedCurrency(currencyCode: currencyCode, ownedValue: ownedValue)
+                   }
             } label: {
                 Text("Add")
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical,9)
-                    .background((viewModel.selectedCurrencyInSettings == nil || ownedCurrencyValue.isEmpty) ? Color.gray : Color.blue)
+                    .background((viewModel.selectedCurrency == nil || ownedCurrencyValue.isEmpty) ? Color.gray : Color.blue)
                     .cornerRadius(10)
             }
-            .disabled(viewModel.selectedCurrencyInSettings == nil || ownedCurrencyValue.isEmpty)
+            .disabled(viewModel.selectedCurrency == nil || ownedCurrencyValue.isEmpty)
             .padding()
 
             
@@ -105,7 +108,7 @@ struct AddCurrencyView: View {
 
 struct AddCurrencyView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCurrencyView(viewModel: SelectedCurrencyViewModel())
+        AddCurrencyView(viewModel: AddCurrencyViewModel())
     }
 }
 
