@@ -100,10 +100,12 @@ class AddCurrencyViewModel: CurrencyViewModelProtocol {
         do {
             try RealmManager.shared.saveUserOwnedCurrency(userCurrency)
             self.userOwnedCurrencies = self.loadUserOwnedCurrency()
+            print("Успешное сохранение валюты, принадлежащей пользователю")
         } catch {
-            print("Failed to save user owned currency: \(error)")
+            print("Не удалось сохранить валюту: \(error)")
         }
     }
+
 
     
     private func loadUserOwnedCurrency() -> [UserOwnedCurrencyModel] {

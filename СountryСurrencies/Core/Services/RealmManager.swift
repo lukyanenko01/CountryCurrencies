@@ -34,12 +34,14 @@ class RealmManager {
         
         do {
             try realm.write {
-                realm.deleteAll()
+                let existingCurrencies = realm.objects(SelectedCurrency.self)
+                realm.delete(existingCurrencies)
                 realm.add(realmCurrency)
             }
         } catch {
             throw RealmError.writeError
         }
+
     }
     
     func loadSelectedCurrency() -> CurrencyModel? {
@@ -104,10 +106,12 @@ class RealmManager {
             return nil
         }
         let notificationToken = realm.objects(UserOwnedCurrency.self).observe { (changes: RealmCollectionChange) in
+            print("Наблюдаемое изменение в UserOwnedCurrencies")
             completion(changes)
         }
         return notificationToken
     }
+
 
     enum RealmError: Error {
         case initializationError
