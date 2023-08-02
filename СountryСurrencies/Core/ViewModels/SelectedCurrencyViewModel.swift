@@ -75,18 +75,28 @@ class AddCurrencyViewModel: CurrencyViewModelProtocol {
     var selectedCurrencyInSettings: CurrencyModel?
     private var notificationToken: NotificationToken?
     
+    @Published var apiError: String?
+    @Published var exchangeRates: [String: Double] = [:]
     @Published var currencies: [CurrencyModel] = []
-    
     @Published var selectedCurrency: CurrencyModel?
-    
     @Published var userOwnedCurrencies: [UserOwnedCurrencyModel] = []
+    
+    var totalBalance: Double {
+        userOwnedCurrencies.compactMap { currency in
+            guard let exchangeRate = exchangeRates[currency.currencyCode] else { return nil }
+            return currency.ownedValue * exchangeRate
+        }.reduce(0, +)
+    }
+
 
     let apiService = APIManager()
     
     init() {
         self.loadCurrencies()
         self.subscribeToChanges()
+        self.fetchAllExchangeRates()
     }
+
     
     func loadCurrencies() {
         self.currencies = CurrencyDataService.shared.loadCurrencies() ?? []
@@ -124,6 +134,31 @@ class AddCurrencyViewModel: CurrencyViewModelProtocol {
             }
         }
     }
+    
+    func fetchAllExchangeRates() {
+        let baseCurrency = "USD"
+        apiService.fetchExchangeRate(baseCurrency: baseCurrency) { (response) in
+            if let conversionRates = response?.conversionRates {
+                DispatchQueue.main.async {
+                    self.exchangeRates = conversionRates
+                    self.apiError = nil
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.apiError = "Failed to get the list of currencies"
+                }
+            }
+        }
+    }
+    
+    func removeUserOwnedCurrency(currencyId: UUID) {
+        do {
+            try RealmManager.shared.deleteUserOwnedCurrency(currencyId: currencyId)
+        } catch {
+            print("Failed to delete currency: \(error)")
+        }
+    }
+
     
 }
 

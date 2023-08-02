@@ -10,6 +10,7 @@ import SwiftUI
 enum ImageAsset: String {
     case radioChecked
     case radioUnchecked
+    case wrong
     
     var image: Image {
         return(Image(self.rawValue))

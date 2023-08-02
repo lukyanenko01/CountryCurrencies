@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F22F2E4C2A78235600C5C03C /* UserOwnedCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22F2E4B2A78235600C5C03C /* UserOwnedCurrency.swift */; };
+		F25784B02A7AF4A800245F3B /* WrongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25784AF2A7AF4A800245F3B /* WrongView.swift */; };
 		F2B011A42A754065006DF83F /* AddCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011A32A754065006DF83F /* AddCurrencyView.swift */; };
 		F2B011A62A754970006DF83F /* TextFieldInputService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011A52A754970006DF83F /* TextFieldInputService.swift */; };
 		F2B011A92A7549A4006DF83F /* CusstomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B011A82A7549A4006DF83F /* CusstomTextFieldView.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		F22F2E4B2A78235600C5C03C /* UserOwnedCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOwnedCurrency.swift; sourceTree = "<group>"; };
+		F25784AF2A7AF4A800245F3B /* WrongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongView.swift; sourceTree = "<group>"; };
 		F2B011A32A754065006DF83F /* AddCurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCurrencyView.swift; sourceTree = "<group>"; };
 		F2B011A52A754970006DF83F /* TextFieldInputService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInputService.swift; sourceTree = "<group>"; };
 		F2B011A82A7549A4006DF83F /* CusstomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CusstomTextFieldView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			children = (
 				F2B011A82A7549A4006DF83F /* CusstomTextFieldView.swift */,
 				F2B011BE2A759C8C006DF83F /* CurrencyRow.swift */,
+				F25784AF2A7AF4A800245F3B /* WrongView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				F2ED6AAC2A72DEBA00A0945A /* CurrencyListPage.swift in Sources */,
 				F2B011B12A755F4B006DF83F /* ImageAsset.swift in Sources */,
 				F2B011A92A7549A4006DF83F /* CusstomTextFieldView.swift in Sources */,
+				F25784B02A7AF4A800245F3B /* WrongView.swift in Sources */,
 				F2B011C42A75A1A9006DF83F /* APIManager.swift in Sources */,
 				F2ED6AC82A72F51700A0945A /* CurrencyListViewModel.swift in Sources */,
 				F2B011B92A757295006DF83F /* SelectedCurrency.swift in Sources */,

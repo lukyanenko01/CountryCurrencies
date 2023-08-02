@@ -112,6 +112,21 @@ class RealmManager {
         return notificationToken
     }
 
+    func deleteUserOwnedCurrency(currencyId: UUID) throws {
+        guard let realm = self.realm else {
+            print("Realm is not initialized.")
+            throw RealmError.initializationError
+        }
+        
+        if let currencyToDelete = realm.object(ofType: UserOwnedCurrency.self, forPrimaryKey: currencyId.uuidString) {
+            try realm.write {
+                realm.delete(currencyToDelete)
+            }
+        } else {
+            print("Failed to find currency for deletion")
+        }
+    }
+
 
     enum RealmError: Error {
         case initializationError

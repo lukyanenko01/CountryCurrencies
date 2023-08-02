@@ -10,6 +10,7 @@ import SwiftUI
 enum ColorAsset: String {
     case homeDG
     case selectTab
+    case retryButton
 
     var color: UIColor {
         return UIColor(named: self.rawValue) ?? UIColor()

@@ -34,6 +34,8 @@ struct APIManager {
             completion(nil)
         }.resume()
     }
+    
+
 }
 
 

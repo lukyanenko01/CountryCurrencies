@@ -15,11 +15,10 @@ struct CurrencyListPage: View {
     var body: some View {
         NavigationView {
             Group {
-                if let error = viewModel.apiError {
-                    VStack {
-                        Text("Error: \(error)")
-                        Text("Try again later")
-                    }
+                if viewModel.isLoading {
+                    ProgressView()
+                } else if viewModel.apiError != nil {
+                    WrongView(retryAction: viewModel.reloadData)
                 } else {
                     Group {
                         ScrollView {

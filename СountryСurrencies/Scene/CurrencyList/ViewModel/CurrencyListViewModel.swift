@@ -13,6 +13,8 @@ class CurrencyListViewModel: ObservableObject {
     @Published var exchangeRates: [String: Double] = [:]
     @Published var apiError: String?
     @Published var selectedCurrency: CurrencyModel?
+    @Published var isLoading = false
+
     
     let apiService = APIManager()
     
@@ -22,6 +24,12 @@ class CurrencyListViewModel: ObservableObject {
         loadCurrencies()
         observeRealmChanges()
     }
+    
+    func reloadData() {
+        loadCurrencies()
+        fetchAllExchangeRates()
+    }
+
 
     func loadCurrencies() {
         self.currencies = CurrencyDataService.shared.loadCurrencies() ?? []
@@ -30,20 +38,24 @@ class CurrencyListViewModel: ObservableObject {
     }
     
     func fetchAllExchangeRates() {
+        self.isLoading = true
         let baseCurrency = selectedCurrency?.currencyCode ?? "UAH"
         apiService.fetchExchangeRate(baseCurrency: baseCurrency) { (response) in
             if let conversionRates = response?.conversionRates {
                 DispatchQueue.main.async {
                     self.exchangeRates = conversionRates
                     self.apiError = nil
+                    self.isLoading = false
                 }
             } else {
                 DispatchQueue.main.async {
                     self.apiError = "Failed to get the list of currencies"
+                    self.isLoading = false
                 }
             }
         }
     }
+
     
     private func loadSelectedCurrency() -> CurrencyModel? {
         return RealmManager.shared.loadSelectedCurrency()
